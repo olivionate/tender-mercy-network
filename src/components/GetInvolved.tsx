@@ -15,6 +15,8 @@ import {
   MapPin,
   Clock
 } from "lucide-react";
+import volunteersImage from "@/assets/volunteers.jpg";
+import donationsImage from "@/assets/donations.jpg";
 
 const GetInvolved = () => {
   const donationOptions = [
@@ -124,6 +126,26 @@ const GetInvolved = () => {
             </p>
           </div>
 
+          {/* Donation Hero Image */}
+          <div className="relative mb-12 animate-slide-up">
+            <div className="relative overflow-hidden rounded-2xl shadow-strong">
+              <img 
+                src={donationsImage}
+                alt="Hands showing generosity and charity through donations"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30"></div>
+              <div className="absolute inset-0 flex items-center justify-center text-white text-center">
+                <div>
+                  <h3 className="text-3xl font-bold mb-4">Every Gift Creates Hope</h3>
+                  <p className="text-xl text-white/90 max-w-2xl">
+                    Your donation transforms lives and brings Christ's love to families in their greatest need.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-6 animate-slide-up">
             {donationOptions.map((option, index) => (
               <Card key={index} className={`relative bg-white shadow-soft border-0 text-center hover:shadow-strong transition-all duration-300 ${option.popular ? 'ring-2 ring-brand-orange' : ''}`}>
@@ -180,6 +202,26 @@ const GetInvolved = () => {
               Use your skills, talents, and time to directly impact the lives of widows and orphans. 
               Join our community of dedicated volunteers serving around the world.
             </p>
+          </div>
+
+          {/* Volunteer Hero Image */}
+          <div className="relative mb-12 animate-slide-up">
+            <div className="relative overflow-hidden rounded-2xl shadow-strong">
+              <img 
+                src={volunteersImage}
+                alt="Diverse group of volunteers working together on community projects"
+                className="w-full h-64 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                  <h3 className="text-2xl font-bold mb-2">Join Our Volunteer Family</h3>
+                  <p className="text-white/90">
+                    Experience the joy of serving alongside others who share your heart for helping widows and orphans.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-12">

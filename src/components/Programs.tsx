@@ -14,6 +14,11 @@ import {
   MessageCircle,
   Flower
 } from "lucide-react";
+import emergencyReliefImage from "@/assets/emergency-relief.jpg";
+import widowsEmpowermentImage from "@/assets/widows-empowerment.jpg";
+import childrenEducationImage from "@/assets/children-education.jpg";
+import spiritualCareImage from "@/assets/spiritual-care.jpg";
+import communityDevelopmentImage from "@/assets/community-development.jpg";
 
 const Programs = () => {
   const programs = [
@@ -22,6 +27,7 @@ const Programs = () => {
       title: "Emergency Relief Program",
       subtitle: "Immediate Aid for Acute Hardships",
       description: "Providing essential support to alleviate immediate suffering and crisis situations.",
+      image: emergencyReliefImage,
       services: [
         { icon: Utensils, text: "Monthly food baskets with nutritious staples" },
         { icon: Home, text: "Temporary housing and rent subsidies" },
@@ -37,6 +43,7 @@ const Programs = () => {
       title: "Widows Empowerment Initiative", 
       subtitle: "Building Financial Independence & Resilience",
       description: "Equipping widows with skills, resources, and support to achieve sustainable livelihoods.",
+      image: widowsEmpowermentImage,
       services: [
         { icon: Briefcase, text: "12-16 week vocational training courses" },
         { icon: DollarSign, text: "Microfinance loans up to $500" },
@@ -52,6 +59,7 @@ const Programs = () => {
       title: "Orphans Education & Care Program",
       subtitle: "Ensuring Access to Education & Nurturing",
       description: "Comprehensive support to ensure orphans receive quality education and caring environments.",
+      image: childrenEducationImage,
       services: [
         { icon: GraduationCap, text: "Full scholarships covering fees, uniforms, books" },
         { icon: Users, text: "Christian mentorship programs" },
@@ -67,6 +75,7 @@ const Programs = () => {
       title: "Spiritual Nurture Ministry",
       subtitle: "Deepening Faith & Building Community",
       description: "Fostering spiritual growth and community connections among widows and orphans.",
+      image: spiritualCareImage,
       services: [
         { icon: BookOpen, text: "Weekly Bible studies on hope and resilience" },
         { icon: Flower, text: "Annual prayer retreats and renewal" },
@@ -82,6 +91,7 @@ const Programs = () => {
       title: "Community Development Projects", 
       subtitle: "Creating Sustainable Infrastructure",
       description: "Building lasting infrastructure to support widows and orphans in their communities.",
+      image: communityDevelopmentImage,
       services: [
         { icon: Building, text: "Community centers for training and worship" },
         { icon: Utensils, text: "Agricultural cooperatives for income generation" },
@@ -108,58 +118,75 @@ const Programs = () => {
           </p>
         </div>
 
-        {/* Programs Grid */}
         <div className="space-y-12">
           {programs.map((program, index) => (
-            <Card key={index} className={`${program.color} shadow-soft border-2 animate-slide-up group hover:shadow-strong transition-all duration-300`}>
-              <CardHeader className="pb-4">
-                <div className="flex items-start space-x-4">
-                  <div className={`${program.bgColor} p-4 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <program.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-2xl md:text-3xl text-primary mb-2">
-                      {program.title}
-                    </CardTitle>
-                    <p className={`font-semibold ${program.iconColor} mb-3`}>
-                      {program.subtitle}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {program.description}
-                    </p>
+            <Card key={index} className={`${program.color} shadow-soft border-2 animate-slide-up group hover:shadow-strong transition-all duration-300 overflow-hidden`}>
+              <div className="grid lg:grid-cols-2 gap-0">
+                {/* Image Section */}
+                <div className="relative h-64 lg:h-full">
+                  <img 
+                    src={program.image}
+                    alt={`${program.title} - showing our work in action`}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent lg:bg-gradient-to-t lg:from-black/50 lg:to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white lg:hidden">
+                    <h4 className="font-semibold text-lg">{program.title}</h4>
                   </div>
                 </div>
-              </CardHeader>
-              
-              <CardContent className="pt-0">
-                <div className="grid md:grid-cols-2 gap-4">
-                  {program.services.map((service, serviceIndex) => (
-                    <div key={serviceIndex} className="flex items-center space-x-3 bg-white/50 p-4 rounded-lg">
-                      <div className={`${program.iconColor} shrink-0`}>
-                        <service.icon className="w-5 h-5" />
+
+                {/* Content Section */}
+                <div className="p-6 lg:p-8">
+                  <CardHeader className="p-0 pb-4">
+                    <div className="flex items-start space-x-4">
+                      <div className={`${program.bgColor} p-4 rounded-xl shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                        <program.icon className="w-8 h-8 text-white" />
                       </div>
-                      <span className="text-sm font-medium text-foreground">{service.text}</span>
+                      <div className="flex-1">
+                        <CardTitle className="text-2xl md:text-3xl text-primary mb-2">
+                          {program.title}
+                        </CardTitle>
+                        <p className={`font-semibold ${program.iconColor} mb-3`}>
+                          {program.subtitle}
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {program.description}
+                        </p>
+                      </div>
                     </div>
-                  ))}
+                  </CardHeader>
+                  
+                  <CardContent className="p-0">
+                    <div className="grid md:grid-cols-2 gap-4 mb-6">
+                      {program.services.map((service, serviceIndex) => (
+                        <div key={serviceIndex} className="flex items-center space-x-3 bg-white/50 p-4 rounded-lg">
+                          <div className={`${program.iconColor} shrink-0`}>
+                            <service.icon className="w-5 h-5" />
+                          </div>
+                          <span className="text-sm font-medium text-foreground">{service.text}</span>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="pt-6 border-t border-white/50">
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button 
+                          variant="outline" 
+                          className={`border-current ${program.iconColor} hover:bg-current hover:text-white`}
+                        >
+                          Learn More
+                        </Button>
+                        <Button 
+                          className={`${program.bgColor} text-white hover:opacity-90`}
+                        >
+                          <Heart className="w-4 h-4 mr-2" />
+                          Support This Program
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
                 </div>
-                
-                <div className="mt-6 pt-6 border-t border-white/50">
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Button 
-                      variant="outline" 
-                      className={`border-current ${program.iconColor} hover:bg-current hover:text-white`}
-                    >
-                      Learn More
-                    </Button>
-                    <Button 
-                      className={`${program.bgColor} text-white hover:opacity-90`}
-                    >
-                      <Heart className="w-4 h-4 mr-2" />
-                      Support This Program
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
+              </div>
             </Card>
           ))}
         </div>

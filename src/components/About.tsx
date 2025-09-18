@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Shield, Users, Compass, Home, Sun } from "lucide-react";
+import spiritualCareImage from "@/assets/spiritual-care.jpg";
 
 const About = () => {
   const coreValues = [
@@ -165,6 +166,22 @@ const About = () => {
             </div>
             
             <div className="space-y-6">
+              {/* Spiritual Care Image */}
+              <div className="relative overflow-hidden rounded-xl shadow-strong">
+                <img 
+                  src={spiritualCareImage}
+                  alt="Families praying together, showing faith and spiritual community"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h4 className="font-semibold text-brand-orange mb-2">Faith-Centered Care</h4>
+                  <p className="text-white/90 text-sm">
+                    Every program includes spiritual nurture, pointing families to Christ's hope and love.
+                  </p>
+                </div>
+              </div>
+
               <div className="bg-gradient-gentle p-6 rounded-xl">
                 <h4 className="font-semibold text-brand-orange mb-4">Biblical Foundation</h4>
                 <div className="space-y-4 text-sm">

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Heart, ArrowDown, Users, Home } from "lucide-react";
+import heroImage from "@/assets/hero-community.jpg";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -84,46 +85,43 @@ const Hero = () => {
           {/* Visual Element */}
           <div className="relative lg:block hidden animate-slide-up">
             <div className="relative">
-              {/* Decorative circles */}
-              <div className="absolute -top-4 -right-4 w-72 h-72 bg-brand-orange/20 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-              
-              {/* Main visual */}
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                <div className="text-center space-y-6">
-                  <div className="flex justify-center items-center space-x-4">
-                    <div className="bg-brand-orange/20 p-4 rounded-full">
-                      <Users className="w-8 h-8 text-brand-orange" />
-                    </div>
-                    <div className="text-6xl text-brand-orange animate-gentle-bounce">♥</div>
-                    <div className="bg-brand-orange/20 p-4 rounded-full">
-                      <Home className="w-8 h-8 text-brand-orange" />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <h3 className="text-2xl font-semibold">Our Mission</h3>
-                    <p className="text-white/80">
-                      Rooted in biblical truth, we provide comprehensive care that restores hope and dignity to those who need it most.
-                    </p>
-                  </div>
-                  
-                  <div className="flex justify-center space-x-8 text-sm">
-                    <div className="text-center">
-                      <div className="font-semibold text-brand-orange">Emergency Relief</div>
-                      <div className="text-white/70">Food & Shelter</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-semibold text-brand-orange">Empowerment</div>
-                      <div className="text-white/70">Skills & Training</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-semibold text-brand-orange">Spiritual Care</div>
-                      <div className="text-white/70">Faith & Hope</div>
+              {/* Hero Image */}
+              <div className="relative overflow-hidden rounded-2xl shadow-strong">
+                <img 
+                  src={heroImage}
+                  alt="Community of widows and children receiving care and support"
+                  className="w-full h-96 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                
+                {/* Overlay Content */}
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                    <div className="text-center space-y-4">
+                      <div className="flex justify-center items-center space-x-4">
+                        <div className="bg-brand-orange/20 p-3 rounded-full">
+                          <Users className="w-6 h-6 text-brand-orange" />
+                        </div>
+                        <div className="text-4xl text-brand-orange animate-gentle-bounce">♥</div>
+                        <div className="bg-brand-orange/20 p-3 rounded-full">
+                          <Home className="w-6 h-6 text-brand-orange" />
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-semibold">Our Mission in Action</h3>
+                        <p className="text-white/90 text-sm">
+                          See the real impact of your support in the lives of families across East Africa.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              
+              {/* Decorative circles */}
+              <div className="absolute -top-4 -right-4 w-72 h-72 bg-brand-orange/20 rounded-full blur-3xl -z-10"></div>
+              <div className="absolute -bottom-8 -left-8 w-96 h-96 bg-white/10 rounded-full blur-3xl -z-10"></div>
             </div>
           </div>
         </div>
