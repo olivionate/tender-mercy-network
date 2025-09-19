@@ -18,14 +18,14 @@ const Impact = () => {
   const currentStats = [
     {
       icon: Users,
-      number: "1,200",
+      number: "200",
       label: "Widows Empowered",
       description: "Currently receiving support and training",
       color: "text-brand-teal"
     },
     {
       icon: Heart,
-      number: "2,800", 
+      number: "500", 
       label: "Orphans Cared For",
       description: "In education and mentorship programs",
       color: "text-brand-orange"
@@ -47,8 +47,8 @@ const Impact = () => {
   ];
 
   const shortTermGoals = [
-    { goal: "Serve 1,000 widows with direct aid", progress: 87, year: "2025" },
-    { goal: "Support 2,500 orphans in education", progress: 76, year: "2025" },
+    { goal: "Serve 200 widows with direct aid", progress: 87, year: "2025" },
+    { goal: "Support 500 orphans in education", progress: 76, year: "2025" },
     { goal: "Train 200 widows in vocational skills", progress: 65, year: "2026" },
     { goal: "Build 2 community centers", progress: 40, year: "2027" }
   ];

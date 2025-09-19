@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import emergencyReliefImage from "@/assets/emergency-relief.jpg";
 import widowsEmpowermentImage from "@/assets/widows-empowerment.jpg";
-import childrenEducationImage from "@/assets/children-education.jpg";
+import childrenEducationImage from "@/assets/authentic-african-children.jpg";
 import spiritualCareImage from "@/assets/spiritual-care.jpg";
 import communityDevelopmentImage from "@/assets/community-development.jpg";
 
