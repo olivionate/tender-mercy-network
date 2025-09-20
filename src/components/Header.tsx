@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Heart, Phone, Mail } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import tenderMercyLogo from "@/assets/tender-mercy-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
     setIsMenuOpen(false);
@@ -17,7 +23,7 @@ const Header = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <img 
               src={tenderMercyLogo} 
               alt="Tender Mercy Network Logo" 
@@ -27,58 +33,53 @@ const Header = () => {
               <h1 className="text-xl font-bold text-primary">Tender Mercy Network</h1>
               <p className="text-sm text-muted-foreground">Caring for widows & orphans</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('home')}
+            <Link 
+              to="/"
               className="text-foreground hover:text-primary transition-colors"
             >
               Home
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')}
+            </Link>
+            <Link 
+              to="/about"
               className="text-foreground hover:text-primary transition-colors"
             >
               About
-            </button>
-            <button 
-              onClick={() => scrollToSection('programs')}
+            </Link>
+            <Link 
+              to="/programs"
               className="text-foreground hover:text-primary transition-colors"
             >
               Programs
-            </button>
-            <button 
-              onClick={() => scrollToSection('impact')}
-              className="text-foreground hover:text-primary transition-colors"
-            >
-              Impact
-            </button>
-            <button 
-              onClick={() => scrollToSection('get-involved')}
+            </Link>
+            <Link 
+              to="/get-involved"
               className="text-foreground hover:text-primary transition-colors"
             >
               Get Involved
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link 
+              to="/contact"
               className="text-foreground hover:text-primary transition-colors"
             >
               Contact
-            </button>
+            </Link>
           </nav>
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Button 
-              variant="outline" 
-              onClick={() => scrollToSection('get-involved')}
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            >
-              <Heart className="w-4 h-4 mr-2" />
-              Volunteer
-            </Button>
+            <Link to="/get-involved">
+              <Button 
+                variant="outline" 
+                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                <Heart className="w-4 h-4 mr-2" />
+                Volunteer
+              </Button>
+            </Link>
             <Button 
               onClick={() => scrollToSection('donate')}
               className="bg-gradient-warm text-white hover:opacity-90 shadow-glow"
@@ -100,52 +101,52 @@ const Header = () => {
         {isMenuOpen && (
           <div className="lg:hidden bg-background border-t border-accent animate-fade-in">
             <div className="py-6 space-y-4">
-              <button 
-                onClick={() => scrollToSection('home')}
+              <Link 
+                to="/"
                 className="block w-full text-left text-foreground hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Home
-              </button>
-              <button 
-                onClick={() => scrollToSection('about')}
+              </Link>
+              <Link 
+                to="/about"
                 className="block w-full text-left text-foreground hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 About
-              </button>
-              <button 
-                onClick={() => scrollToSection('programs')}
+              </Link>
+              <Link 
+                to="/programs"
                 className="block w-full text-left text-foreground hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Programs
-              </button>
-              <button 
-                onClick={() => scrollToSection('impact')}
+              </Link>
+              <Link 
+                to="/get-involved"
                 className="block w-full text-left text-foreground hover:text-primary py-2"
-              >
-                Impact
-              </button>
-              <button 
-                onClick={() => scrollToSection('get-involved')}
-                className="block w-full text-left text-foreground hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Get Involved
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
+              </Link>
+              <Link 
+                to="/contact"
                 className="block w-full text-left text-foreground hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Contact
-              </button>
+              </Link>
               
               <div className="pt-4 space-y-3">
-                <Button 
-                  variant="outline" 
-                  className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                  onClick={() => scrollToSection('get-involved')}
-                >
-                  <Heart className="w-4 h-4 mr-2" />
-                  Volunteer
-                </Button>
+                <Link to="/get-involved" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                  >
+                    <Heart className="w-4 h-4 mr-2" />
+                    Volunteer
+                  </Button>
+                </Link>
                 <Button 
                   className="w-full bg-gradient-warm text-white hover:opacity-90"
                   onClick={() => scrollToSection('donate')}
