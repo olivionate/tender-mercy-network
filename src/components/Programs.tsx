@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Heart, 
   Briefcase, 
@@ -170,18 +171,22 @@ const Programs = () => {
                     
                     <div className="pt-6 border-t border-white/50">
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Button 
-                          variant="outline" 
-                          className={`border-current ${program.iconColor} hover:bg-current hover:text-white`}
-                        >
-                          Learn More
-                        </Button>
-                        <Button 
-                          className={`${program.bgColor} text-white hover:opacity-90`}
-                        >
-                          <Heart className="w-4 h-4 mr-2" />
-                          Support This Program
-                        </Button>
+                        <Link to="/contact">
+                          <Button 
+                            variant="outline" 
+                            className={`border-current ${program.iconColor} hover:bg-current hover:text-white w-full sm:w-auto`}
+                          >
+                            Learn More
+                          </Button>
+                        </Link>
+                        <Link to="/contact">
+                          <Button 
+                            className={`${program.bgColor} text-white hover:opacity-90 w-full sm:w-auto`}
+                          >
+                            <Heart className="w-4 h-4 mr-2" />
+                            Support This Program
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </CardContent>
@@ -201,14 +206,18 @@ const Programs = () => {
             in the lives of widows and orphans.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-gradient-warm text-white shadow-glow">
-              <Heart className="w-5 h-5 mr-2" />
-              Donate to All Programs
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              <Users className="w-5 h-5 mr-2" />
-              Volunteer With Us
-            </Button>
+            <Link to="/contact">
+              <Button size="lg" className="bg-gradient-warm text-white shadow-glow">
+                <Heart className="w-5 h-5 mr-2" />
+                Donate to All Programs
+              </Button>
+            </Link>
+            <Link to="/get-involved">
+              <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Users className="w-5 h-5 mr-2" />
+                Volunteer With Us
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
