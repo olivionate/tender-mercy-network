@@ -1,6 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Shield, Users, Compass, Home, Sun } from "lucide-react";
 import spiritualCareImage from "@/assets/spiritual-care.jpg";
+import missionImage from "@/assets/mission-african-community.jpg";
+import visionImage from "@/assets/vision-african-woman.jpg";
+import valuesImage from "@/assets/values-african-families.jpg";
 
 const About = () => {
   const coreValues = [
@@ -53,14 +56,24 @@ const About = () => {
         {/* Mission & Vision */}
         <div className="grid lg:grid-cols-2 gap-12 mb-20">
           {/* Mission */}
-          <Card className="bg-white shadow-soft border-0 animate-slide-up">
-            <CardContent className="p-8">
-              <div className="flex items-center mb-6">
-                <div className="bg-brand-teal/10 p-3 rounded-full mr-4">
-                  <Heart className="w-6 h-6 text-brand-teal" />
+          <Card className="bg-white shadow-soft border-0 animate-slide-up overflow-hidden">
+            <div className="relative h-48">
+              <img 
+                src={missionImage}
+                alt="African community members representing our mission to serve widows and orphans"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="flex items-center mb-2">
+                  <div className="bg-white/20 p-2 rounded-full mr-3">
+                    <Heart className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold">Our Mission</h3>
                 </div>
-                <h3 className="text-2xl font-bold text-primary">Our Mission</h3>
               </div>
+            </div>
+            <CardContent className="p-8">
               <p className="text-foreground leading-relaxed mb-6">
                 Tender Mercy Network is committed to providing holistic care, support, and empowerment to widows 
                 and orphans in need. Rooted in the biblical call to "care for the widow and the fatherless" (James 1:27), 
@@ -77,14 +90,24 @@ const About = () => {
           </Card>
 
           {/* Vision */}
-          <Card className="bg-white shadow-soft border-0 animate-slide-up">
-            <CardContent className="p-8">
-              <div className="flex items-center mb-6">
-                <div className="bg-brand-orange/10 p-3 rounded-full mr-4">
-                  <Sun className="w-6 h-6 text-brand-orange" />
+          <Card className="bg-white shadow-soft border-0 animate-slide-up overflow-hidden">
+            <div className="relative h-48">
+              <img 
+                src={visionImage}
+                alt="African woman representing our vision for hope and future"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="flex items-center mb-2">
+                  <div className="bg-white/20 p-2 rounded-full mr-3">
+                    <Sun className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold">Our Vision</h3>
                 </div>
-                <h3 className="text-2xl font-bold text-primary">Our Vision</h3>
               </div>
+            </div>
+            <CardContent className="p-8">
               <p className="text-foreground leading-relaxed mb-6">
                 To create a world where every widow and orphan experiences the tender mercy of God through 
                 compassionate care, sustainable support, and a community of love that reflects Christ's heart 
@@ -112,9 +135,23 @@ const About = () => {
         <div className="animate-slide-up">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-primary mb-4">Our Core Values</h3>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
               These foundational principles guide every program, decision, and interaction in our ministry.
             </p>
+            
+            {/* Values Hero Image */}
+            <div className="relative h-64 md:h-80 mb-12 rounded-2xl overflow-hidden shadow-strong">
+              <img 
+                src={valuesImage}
+                alt="African families demonstrating our core values of compassion, faith, and community"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <h4 className="text-2xl font-bold mb-3">Living Our Values Every Day</h4>
+                <p className="text-lg opacity-90">Compassion, Faith, and Community in Action</p>
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
