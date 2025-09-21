@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Heart, ArrowDown, Users, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-community.jpg";
 
 const Hero = () => {
@@ -61,24 +62,26 @@ const Hero = () => {
 
             {/* Call to Action */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
-                onClick={() => scrollToSection('donate')}
-                className="bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold shadow-glow"
-              >
-                <Heart className="w-5 h-5 mr-2" />
-                Donate Now
-              </Button>
+              <Link to="/get-involved">
+                <Button 
+                  size="lg" 
+                  className="bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold shadow-glow"
+                >
+                  <Heart className="w-5 h-5 mr-2" />
+                  Donate Now
+                </Button>
+              </Link>
               
-              <Button 
-                size="lg" 
-                variant="outline" 
-                onClick={() => scrollToSection('programs')}
-                className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
-              >
-                <Users className="w-5 h-5 mr-2" />
-                See Our Impact
-              </Button>
+              <Link to="/programs">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                >
+                  <Users className="w-5 h-5 mr-2" />
+                  Programs
+                </Button>
+              </Link>
             </div>
           </div>
 

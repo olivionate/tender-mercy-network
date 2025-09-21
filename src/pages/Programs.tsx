@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Heart, 
   Briefcase, 
@@ -315,10 +316,12 @@ const ProgramsPage = () => {
                   <Heart className="w-5 h-5 mr-2" />
                   Support All Programs
                 </Button>
-                <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Users className="w-5 h-5 mr-2" />
-                  Volunteer With Us
-                </Button>
+                <Link to="/contact">
+                  <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    <Users className="w-5 h-5 mr-2" />
+                    Volunteer With Us
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

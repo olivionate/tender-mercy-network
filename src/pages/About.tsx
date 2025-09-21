@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Heart, 
   Eye, 
@@ -174,10 +175,12 @@ const AboutPage = () => {
                       compassionate care, sustainable support, and a community of love that reflects Christ's 
                       heart for the vulnerable.
                     </p>
-                    <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                      <Eye className="w-5 h-5 mr-2" />
-                      See Our Impact
-                    </Button>
+                    <Link to="/programs">
+                      <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                        <Eye className="w-5 h-5 mr-2" />
+                        Programs
+                      </Button>
+                    </Link>
                   </CardContent>
                 </div>
               </div>

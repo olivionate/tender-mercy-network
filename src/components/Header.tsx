@@ -71,7 +71,7 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
-            <Link to="/get-involved">
+            <Link to="/contact">
               <Button 
                 variant="outline" 
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
@@ -80,12 +80,13 @@ const Header = () => {
                 Volunteer
               </Button>
             </Link>
-            <Button 
-              onClick={() => scrollToSection('donate')}
-              className="bg-gradient-warm text-white hover:opacity-90 shadow-glow"
-            >
-              Donate Now
-            </Button>
+            <Link to="/get-involved">
+              <Button 
+                className="bg-gradient-warm text-white hover:opacity-90 shadow-glow"
+              >
+                Donate Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -138,7 +139,7 @@ const Header = () => {
               </Link>
               
               <div className="pt-4 space-y-3">
-                <Link to="/get-involved" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
                   <Button 
                     variant="outline" 
                     className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
@@ -147,12 +148,13 @@ const Header = () => {
                     Volunteer
                   </Button>
                 </Link>
-                <Button 
-                  className="w-full bg-gradient-warm text-white hover:opacity-90"
-                  onClick={() => scrollToSection('donate')}
-                >
-                  Donate Now
-                </Button>
+                <Link to="/get-involved" onClick={() => setIsMenuOpen(false)}>
+                  <Button 
+                    className="w-full bg-gradient-warm text-white hover:opacity-90"
+                  >
+                    Donate Now
+                  </Button>
+                </Link>
               </div>
 
               <div className="pt-4 border-t border-accent space-y-2">

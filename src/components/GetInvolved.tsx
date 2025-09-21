@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 import { 
   Heart, 
   Users, 
@@ -169,12 +170,14 @@ const GetInvolved = () => {
                   <p className="text-sm text-muted-foreground">
                     {option.description}
                   </p>
-                  <Button 
-                    className={`w-full ${option.popular ? 'bg-brand-orange hover:bg-brand-orange-dark text-white' : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
-                  >
-                    <Heart className="w-4 h-4 mr-2" />
-                    Donate Now
-                  </Button>
+                  <Link to="/get-involved">
+                    <Button 
+                      className={`w-full ${option.popular ? 'bg-brand-orange hover:bg-brand-orange-dark text-white' : 'bg-primary hover:bg-primary/90 text-primary-foreground'}`}
+                    >
+                      <Heart className="w-4 h-4 mr-2" />
+                      Donate Now
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}

@@ -19,11 +19,11 @@ const Footer = () => {
   ];
 
   const getInvolved = [
-    { name: "Donate Now", href: "#donate" },
-    { name: "Volunteer", href: "#get-involved" },
-    { name: "Partner With Us", href: "#get-involved" },
-    { name: "Prayer Network", href: "#get-involved" },
-    { name: "Sponsor a Child", href: "#donate" }
+    { name: "Donate Now", href: "/get-involved" },
+    { name: "Volunteer", href: "/contact" },
+    { name: "Partner With Us", href: "/get-involved" },
+    { name: "Prayer Network", href: "/get-involved" },
+    { name: "Sponsor a Child", href: "/get-involved" }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -142,12 +142,12 @@ const Footer = () => {
             <ul className="space-y-3 mb-6">
               {getInvolved.map((action, index) => (
                 <li key={index}>
-                  <button 
-                    onClick={() => scrollToSection(action.href)}
+                  <a
+                    href={action.href}
                     className="text-white/70 hover:text-white transition-colors text-sm"
                   >
                     {action.name}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

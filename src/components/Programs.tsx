@@ -121,7 +121,7 @@ const Programs = () => {
 
         <div className="space-y-12">
           {programs.map((program, index) => (
-            <Card key={index} className={`${program.color} shadow-soft border-2 animate-slide-up group hover:shadow-strong transition-all duration-300 overflow-hidden`}>
+            <Card key={index} id={`program-${index}`} className={`${program.color} shadow-soft border-2 animate-slide-up group hover:shadow-strong transition-all duration-300 overflow-hidden`}>
               <div className="grid lg:grid-cols-2 gap-0">
                 {/* Image Section */}
                 <div className="relative h-64 lg:h-full">
@@ -171,7 +171,7 @@ const Programs = () => {
                     
                     <div className="pt-6 border-t border-white/50">
                       <div className="flex flex-col sm:flex-row gap-3">
-                        <Link to="/contact">
+                        <Link to={`/programs#program-${index}`}>
                           <Button 
                             variant="outline" 
                             className={`border-current ${program.iconColor} hover:bg-current hover:text-white w-full sm:w-auto`}
