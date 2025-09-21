@@ -179,7 +179,7 @@ const Programs = () => {
                             Learn More
                           </Button>
                         </Link>
-                        <Link to="/contact">
+                        <Link to="/get-involved">
                           <Button 
                             className={`${program.bgColor} text-white hover:opacity-90 w-full sm:w-auto`}
                           >

@@ -247,18 +247,22 @@ const ProgramsPage = () => {
                           </div>
                           
                           <div className="flex flex-col sm:flex-row gap-3">
-                            <Button 
-                              variant="outline" 
-                              className={`border-current ${program.iconColor} hover:bg-current hover:text-white`}
-                            >
-                              Learn More Details
-                            </Button>
-                            <Button 
-                              className={`${program.bgColor} text-white hover:opacity-90`}
-                            >
-                              <Heart className="w-4 h-4 mr-2" />
-                              Support This Program
-                            </Button>
+                            <Link to="/contact">
+                              <Button 
+                                variant="outline" 
+                                className={`border-current ${program.iconColor} hover:bg-current hover:text-white w-full sm:w-auto`}
+                              >
+                                Learn More Details
+                              </Button>
+                            </Link>
+                            <Link to="/get-involved">
+                              <Button 
+                                className={`${program.bgColor} text-white hover:opacity-90 w-full sm:w-auto`}
+                              >
+                                <Heart className="w-4 h-4 mr-2" />
+                                Support This Program
+                              </Button>
+                            </Link>
                           </div>
                         </CardContent>
                       </div>
