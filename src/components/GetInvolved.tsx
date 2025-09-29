@@ -255,10 +255,12 @@ const GetInvolved = () => {
                     </div>
                   </div>
                   <div className="mt-6 pt-6 border-t border-gray-100">
-                    <Button className="w-full bg-brand-teal hover:bg-brand-teal-dark text-white">
-                      <Users className="w-4 h-4 mr-2" />
-                      Apply to Volunteer
-                    </Button>
+                    <Link to="/contact">
+                      <Button className="w-full bg-brand-teal hover:bg-brand-teal-dark text-white">
+                        <Users className="w-4 h-4 mr-2" />
+                        Apply to Volunteer
+                      </Button>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
