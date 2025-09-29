@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Link } from "react-router-dom";
 import { 
   Mail, 
   Phone, 
@@ -314,10 +315,12 @@ const ContactPage = () => {
                 Join our online community and see the daily impact of God's tender mercy in action.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-gradient-warm text-white shadow-glow">
-                  <Heart className="w-5 h-5 mr-2" />
-                  Subscribe to Updates
-                </Button>
+                <Link to="/contact">
+                  <Button size="lg" className="bg-gradient-warm text-white shadow-glow w-full sm:w-auto">
+                    <Heart className="w-5 h-5 mr-2" />
+                    Subscribe to Updates
+                  </Button>
+                </Link>
                 <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                   <Calendar className="w-5 h-5 mr-2" />
                   Join Our Newsletter
