@@ -27,7 +27,7 @@ const Header = () => {
             <img 
               src={tenderMercyLogo} 
               alt="Tender Mercy Network Logo" 
-              className="h-14 w-14"
+              className="h-24 w-24"
             />
             <div>
               <h1 className="text-xl font-bold text-primary">Tender Mercy Network</h1>
