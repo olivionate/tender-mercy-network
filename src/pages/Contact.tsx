@@ -100,12 +100,12 @@ const ContactPage = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-gentle">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 animate-fade-in">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-gentle">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 md:mb-6 animate-fade-in">
               Contact Us
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
               We'd love to hear from you! Whether you have questions about our programs, want to get involved, 
               or need assistance, we're here to help connect you with our mission.
             </p>
@@ -113,8 +113,8 @@ const ContactPage = () => {
         </section>
 
         {/* Contact Methods */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
+        <section className="py-12 md:py-16 lg:py-20">
+          <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">Get in Touch</h2>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

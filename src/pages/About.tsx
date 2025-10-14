@@ -94,23 +94,23 @@ const AboutPage = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-gentle">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 animate-fade-in">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-gentle">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 md:mb-6 animate-fade-in">
               About Tender Mercy Network
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-slide-up">
               Learn about our heart, our history, and our commitment to serving widows and orphans with Christ's love.
             </p>
           </div>
         </section>
 
         {/* Mission Section */}
-        <section id="mission" className="py-20">
-          <div className="container mx-auto px-6">
+        <section id="mission" className="py-12 md:py-16 lg:py-20">
+          <div className="container mx-auto px-4 md:px-6">
             <Card className="bg-gradient-subtle shadow-soft border-primary/20 hover:shadow-strong transition-all duration-300 group overflow-hidden max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative h-80 lg:h-full order-2 lg:order-1">
+                <div className="relative h-64 sm:h-80 lg:h-full order-2 lg:order-1">
                   <img 
                     src={missionImage}
                     alt="African community members representing our mission to serve widows and orphans"
@@ -118,7 +118,7 @@ const AboutPage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
                 </div>
-                <div className="p-8 lg:p-12 order-1 lg:order-2 flex flex-col justify-center">
+                <div className="p-6 sm:p-8 lg:p-12 order-1 lg:order-2 flex flex-col justify-center">
                   <CardHeader className="p-0 pb-6">
                     <div className="flex items-center space-x-4 mb-4">
                       <div className="bg-gradient-warm p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">

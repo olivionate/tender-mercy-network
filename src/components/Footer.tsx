@@ -33,9 +33,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary text-white">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 md:px-6">
         {/* Main Footer Content */}
-        <div className="py-16 grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+        <div className="py-12 md:py-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Organization Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">

@@ -154,12 +154,12 @@ const GetInvolvedPage = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-gentle">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 animate-fade-in">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-gentle">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 md:mb-6 animate-fade-in">
               Get Involved & Make a Difference
             </h1>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed animate-slide-up">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed animate-slide-up">
               Join us in extending God's tender mercy to widows and orphans. Your prayers, time, talents, and resources 
               can transform lives and reflect Christ's love to the vulnerable.
             </p>

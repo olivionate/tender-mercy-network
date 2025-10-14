@@ -151,12 +151,12 @@ const ProgramsPage = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-gentle">
-          <div className="container mx-auto px-6 text-center">
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 animate-fade-in">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-gentle">
+          <div className="container mx-auto px-4 md:px-6 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-4 md:mb-6 animate-fade-in">
               Our Programs & Services
             </h1>
-            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed animate-slide-up">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed animate-slide-up">
               We offer comprehensive programs designed to address immediate needs while fostering long-term empowerment. 
               Each program integrates practical support with spiritual care, reflecting Christ's holistic love for the vulnerable.
             </p>
@@ -164,25 +164,25 @@ const ProgramsPage = () => {
         </section>
 
         {/* Programs Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="space-y-20">
+        <section className="py-12 md:py-16 lg:py-20">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="space-y-12 md:space-y-16 lg:space-y-20">
               {programs.map((program, index) => (
                 <div key={index} className="animate-slide-up">
                   <Card className={`${program.color} shadow-soft border-2 hover:shadow-strong transition-all duration-300 overflow-hidden`}>
                     <div className="grid lg:grid-cols-2 gap-0">
                       {/* Image Section */}
-                      <div className={`relative h-80 lg:h-full ${index % 2 === 0 ? 'order-1' : 'order-2'}`}>
+                      <div className={`relative h-64 sm:h-80 lg:h-full ${index % 2 === 0 ? 'order-1' : 'lg:order-1'}`}>
                         <img 
                           src={program.image}
                           alt={`${program.title} - showing our work in action`}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent lg:bg-gradient-to-t lg:from-black/50 lg:to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                       </div>
 
                       {/* Content Section */}
-                      <div className={`p-8 lg:p-12 ${index % 2 === 0 ? 'order-2' : 'order-1'}`}>
+                      <div className={`p-6 sm:p-8 lg:p-12 ${index % 2 === 0 ? 'order-2' : 'lg:order-1'}`}>
                         <CardHeader className="p-0 pb-6">
                           <div className="flex items-start space-x-4">
                             <div className={`${program.bgColor} p-4 rounded-xl shrink-0 hover:scale-110 transition-transform duration-300`}>
