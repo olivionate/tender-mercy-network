@@ -1,34 +1,44 @@
 import { Heart, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Globe } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import tenderMercyLogo from "@/assets/tender-mercy-logo.png";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Our Programs", href: "#programs" },
-    { name: "Impact & Vision", href: "#impact" },
-    { name: "Get Involved", href: "#get-involved" },
-    { name: "Contact", href: "#contact" }
+    { name: "About Us", href: "/about", isHash: false },
+    { name: "Our Programs", href: "/programs", isHash: false },
+    { name: "Get Involved", href: "/get-involved", isHash: false },
+    { name: "Contact", href: "/contact", isHash: false }
   ];
 
   const programs = [
-    { name: "Emergency Relief", href: "#programs" },
-    { name: "Widows Empowerment", href: "#programs" },
-    { name: "Orphans Education", href: "#programs" },
-    { name: "Spiritual Nurture", href: "#programs" },
-    { name: "Community Development", href: "#programs" }
+    { name: "Emergency Relief", href: "/programs", isHash: false },
+    { name: "Widows Empowerment", href: "/programs", isHash: false },
+    { name: "Orphans Education", href: "/programs", isHash: false },
+    { name: "Spiritual Nurture", href: "/programs", isHash: false },
+    { name: "Community Development", href: "/programs", isHash: false }
   ];
 
   const getInvolved = [
-    { name: "Donate Now", href: "/get-involved" },
-    { name: "Volunteer", href: "/contact" },
-    { name: "Partner With Us", href: "/get-involved" },
-    { name: "Prayer Network", href: "/get-involved" },
-    { name: "Sponsor a Child", href: "/get-involved" }
+    { name: "Donate Now", href: "/get-involved", isHash: false },
+    { name: "Volunteer", href: "/contact", isHash: false },
+    { name: "Partner With Us", href: "/get-involved", isHash: false },
+    { name: "Prayer Network", href: "/get-involved", isHash: false },
+    { name: "Sponsor a Child", href: "/get-involved", isHash: false }
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''));
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const handleLinkClick = (href: string, isHash: boolean) => {
+    if (isHash) {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(href.replace('#', ''));
+        element?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -109,8 +119,8 @@ const Footer = () => {
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <button 
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-white/70 hover:text-white transition-colors text-sm"
+                    onClick={() => handleLinkClick(link.href, link.isHash)}
+                    className="text-white/70 hover:text-white transition-colors text-sm text-left"
                   >
                     {link.name}
                   </button>
@@ -126,8 +136,8 @@ const Footer = () => {
               {programs.map((program, index) => (
                 <li key={index}>
                   <button 
-                    onClick={() => scrollToSection(program.href)}
-                    className="text-white/70 hover:text-white transition-colors text-sm"
+                    onClick={() => handleLinkClick(program.href, program.isHash)}
+                    className="text-white/70 hover:text-white transition-colors text-sm text-left"
                   >
                     {program.name}
                   </button>
@@ -142,12 +152,12 @@ const Footer = () => {
             <ul className="space-y-3 mb-6">
               {getInvolved.map((action, index) => (
                 <li key={index}>
-                  <a
-                    href={action.href}
-                    className="text-white/70 hover:text-white transition-colors text-sm"
+                  <button
+                    onClick={() => handleLinkClick(action.href, action.isHash)}
+                    className="text-white/70 hover:text-white transition-colors text-sm text-left"
                   >
                     {action.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -176,18 +186,15 @@ const Footer = () => {
             </div>
 
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 text-xs text-white/60">
-              <button className="hover:text-white transition-colors">
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">
                 Privacy Policy
-              </button>
-              <button className="hover:text-white transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="hover:text-white transition-colors">
                 Terms of Service
-              </button>
-              <button className="hover:text-white transition-colors">
+              </Link>
+              <Link to="/financial-transparency" className="hover:text-white transition-colors">
                 Financial Transparency
-              </button>
-              <button className="hover:text-white transition-colors">
-                Annual Reports
-              </button>
+              </Link>
             </div>
           </div>
 
