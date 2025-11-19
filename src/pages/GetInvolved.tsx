@@ -201,9 +201,11 @@ const GetInvolvedPage = () => {
                         <span className="text-sm text-muted-foreground">{option.impact}</span>
                       </div>
                     </div>
-                    <Button className={`w-full ${option.color.replace('text-', 'bg-')} text-white hover:opacity-90`}>
-                      Get Started
-                    </Button>
+                    <Link to="/donate" className="w-full">
+                      <Button className={`w-full ${option.color.replace('text-', 'bg-')} text-white hover:opacity-90`}>
+                        Get Started
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}
@@ -234,16 +236,18 @@ const GetInvolvedPage = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link to="/get-involved">
+                  <Link to="/donate">
                     <Button size="lg" className="bg-gradient-warm text-white shadow-glow">
                       <Heart className="w-5 h-5 mr-2" />
                       Donate Now
                     </Button>
                   </Link>
-                  <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    <Calendar className="w-5 h-5 mr-2" />
-                    Set Up Monthly Giving
-                  </Button>
+                  <Link to="/donate">
+                    <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Set Up Monthly Giving
+                    </Button>
+                  </Link>
                 </div>
               </div>
 
