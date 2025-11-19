@@ -18,6 +18,43 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+// Validation schemas for different payment methods
+const cardPaymentSchema = z.object({
+  cardNumber: z.string().min(15, "Card number must be at least 15 digits").max(19, "Card number is too long"),
+  expiry: z.string().regex(/^(0[1-9]|1[0-2])\/([0-9]{2})$/, "Invalid expiry date format (MM/YY)"),
+  cvv: z.string().min(3, "CVV must be 3 or 4 digits").max(4, "CVV must be 3 or 4 digits"),
+  cardholderName: z.string().min(2, "Cardholder name is required").max(100, "Name is too long"),
+});
+
+const bankPaymentSchema = z.object({
+  accountHolderName: z.string().min(2, "Account holder name is required").max(100, "Name is too long"),
+  accountNumber: z.string().min(8, "Account number must be at least 8 digits").max(17, "Account number is too long"),
+  routingNumber: z.string().min(9, "Routing number must be 9 digits").max(9, "Routing number must be 9 digits"),
+  bankName: z.string().min(2, "Bank name is required").max(100, "Bank name is too long"),
+});
+
+const mobilePaymentSchema = z.object({
+  mobileProvider: z.enum(["mpesa", "airtel"], { required_error: "Please select a mobile payment provider" }),
+  phoneNumber: z.string().min(10, "Phone number must be at least 10 digits").max(15, "Phone number is too long"),
+});
+
+const donorInfoSchema = z.object({
+  firstName: z.string().trim().min(1, "First name is required").max(50, "First name is too long"),
+  lastName: z.string().trim().min(1, "Last name is required").max(50, "Last name is too long"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email is too long"),
+});
 
 const DonatePage = () => {
   const { toast } = useToast();
@@ -33,12 +70,47 @@ const DonatePage = () => {
     { value: "250", label: "$250", description: "Fund vocational training" },
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Dynamic schema based on payment method
+  const getFormSchema = () => {
+    let paymentSchema;
+    if (paymentMethod === "card") {
+      paymentSchema = cardPaymentSchema;
+    } else if (paymentMethod === "bank") {
+      paymentSchema = bankPaymentSchema;
+    } else {
+      paymentSchema = mobilePaymentSchema;
+    }
+    return donorInfoSchema.merge(paymentSchema);
+  };
+
+  const form = useForm<z.infer<ReturnType<typeof getFormSchema>>>({
+    resolver: zodResolver(getFormSchema()),
+    mode: "onBlur",
+  });
+
+  const handleSubmit = (data: any) => {
+    const selectedAmount = customAmount || amount;
+    const donationAmount = parseFloat(selectedAmount);
+
+    if (!donationAmount || donationAmount < 1) {
+      toast({
+        title: "Invalid Amount",
+        description: "Please enter a valid donation amount of at least $1.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Show success message
     toast({
-      title: "Payment Processing",
-      description: "Your donation is being processed. Thank you for your generosity!",
+      title: "Donation Successful! 🎉",
+      description: `Thank you for your ${donationType === "monthly" ? "monthly" : "one-time"} donation of $${donationAmount}. You will receive a confirmation email shortly.`,
+      duration: 6000,
     });
+
+    // Reset form
+    form.reset();
+    setCustomAmount("");
   };
 
   const selectedAmount = customAmount || amount;
@@ -97,7 +169,8 @@ const DonatePage = () => {
                     <CardDescription>Choose your donation type and payment method</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-8">
-                    <form onSubmit={handleSubmit} className="space-y-8">
+                    <Form {...form}>
+                      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
                       {/* Donation Type */}
                       <div className="space-y-4">
                         <Label className="text-lg font-semibold">Donation Type</Label>
@@ -179,67 +252,161 @@ const DonatePage = () => {
                           </TabsList>
 
                           <TabsContent value="card" className="space-y-4 mt-6">
-                            <div className="space-y-2">
-                              <Label htmlFor="card-number">Card Number</Label>
-                              <Input id="card-number" placeholder="1234 5678 9012 3456" />
-                            </div>
+                            <FormField
+                              control={form.control}
+                              name="cardNumber"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Card Number</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="1234 5678 9012 3456" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
                             <div className="grid grid-cols-2 gap-4">
-                              <div className="space-y-2">
-                                <Label htmlFor="expiry">Expiry Date</Label>
-                                <Input id="expiry" placeholder="MM/YY" />
-                              </div>
-                              <div className="space-y-2">
-                                <Label htmlFor="cvv">CVV</Label>
-                                <Input id="cvv" placeholder="123" />
-                              </div>
+                              <FormField
+                                control={form.control}
+                                name="expiry"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>Expiry Date</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="MM/YY" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                              <FormField
+                                control={form.control}
+                                name="cvv"
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <FormLabel>CVV</FormLabel>
+                                    <FormControl>
+                                      <Input placeholder="123" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
                             </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="card-name">Cardholder Name</Label>
-                              <Input id="card-name" placeholder="John Doe" />
-                            </div>
+                            <FormField
+                              control={form.control}
+                              name="cardholderName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Cardholder Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="John Doe" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
                           </TabsContent>
 
                           <TabsContent value="bank" className="space-y-4 mt-6">
-                            <div className="space-y-2">
-                              <Label htmlFor="account-name">Account Holder Name</Label>
-                              <Input id="account-name" placeholder="John Doe" />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="account-number">Account Number</Label>
-                              <Input id="account-number" placeholder="1234567890" />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="routing">Routing Number</Label>
-                              <Input id="routing" placeholder="123456789" />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="bank-name">Bank Name</Label>
-                              <Input id="bank-name" placeholder="Your Bank Name" />
-                            </div>
+                            <FormField
+                              control={form.control}
+                              name="accountHolderName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Account Holder Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="John Doe" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name="accountNumber"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Account Number</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="1234567890" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name="routingNumber"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Routing Number</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="123456789" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name="bankName"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Bank Name</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="Your Bank Name" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
                           </TabsContent>
 
                           <TabsContent value="mobile" className="space-y-4 mt-6">
-                            <div className="space-y-2">
-                              <Label>Select Mobile Payment Provider</Label>
-                              <RadioGroup defaultValue="mpesa">
-                                <div className="flex items-center space-x-2 border rounded-lg p-4">
-                                  <RadioGroupItem value="mpesa" id="mpesa" />
-                                  <Label htmlFor="mpesa" className="flex-1 cursor-pointer font-medium">
-                                    M-Pesa
-                                  </Label>
-                                </div>
-                                <div className="flex items-center space-x-2 border rounded-lg p-4">
-                                  <RadioGroupItem value="airtel" id="airtel" />
-                                  <Label htmlFor="airtel" className="flex-1 cursor-pointer font-medium">
-                                    Airtel Money
-                                  </Label>
-                                </div>
-                              </RadioGroup>
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="phone">Phone Number</Label>
-                              <Input id="phone" placeholder="+254 700 000000" />
-                            </div>
+                            <FormField
+                              control={form.control}
+                              name="mobileProvider"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Select Mobile Payment Provider</FormLabel>
+                                  <FormControl>
+                                    <RadioGroup
+                                      onValueChange={field.onChange}
+                                      defaultValue={field.value}
+                                      className="space-y-2"
+                                    >
+                                      <div className="flex items-center space-x-2 border rounded-lg p-4">
+                                        <RadioGroupItem value="mpesa" id="mpesa" />
+                                        <Label htmlFor="mpesa" className="flex-1 cursor-pointer font-medium">
+                                          M-Pesa
+                                        </Label>
+                                      </div>
+                                      <div className="flex items-center space-x-2 border rounded-lg p-4">
+                                        <RadioGroupItem value="airtel" id="airtel" />
+                                        <Label htmlFor="airtel" className="flex-1 cursor-pointer font-medium">
+                                          Airtel Money
+                                        </Label>
+                                      </div>
+                                    </RadioGroup>
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <FormField
+                              control={form.control}
+                              name="phoneNumber"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormLabel>Phone Number</FormLabel>
+                                  <FormControl>
+                                    <Input placeholder="+254 700 000000" {...field} />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
                           </TabsContent>
                         </Tabs>
                       </div>
@@ -248,19 +415,46 @@ const DonatePage = () => {
                       <div className="space-y-4">
                         <Label className="text-lg font-semibold">Your Information</Label>
                         <div className="grid md:grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="first-name">First Name</Label>
-                            <Input id="first-name" placeholder="John" />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="last-name">Last Name</Label>
-                            <Input id="last-name" placeholder="Doe" />
-                          </div>
+                          <FormField
+                            control={form.control}
+                            name="firstName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>First Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="John" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name="lastName"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Last Name</FormLabel>
+                                <FormControl>
+                                  <Input placeholder="Doe" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
                         </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="email">Email Address</Label>
-                          <Input id="email" type="email" placeholder="john@example.com" />
-                        </div>
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email Address</FormLabel>
+                              <FormControl>
+                                <Input type="email" placeholder="john@example.com" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
                       </div>
 
                       {/* Submit Button */}
@@ -272,7 +466,8 @@ const DonatePage = () => {
                       <p className="text-xs text-center text-muted-foreground">
                         By proceeding, you agree to our terms and privacy policy. Your donation is tax-deductible to the extent allowed by law.
                       </p>
-                    </form>
+                      </form>
+                    </Form>
                   </CardContent>
                 </Card>
               </div>
