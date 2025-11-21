@@ -62,6 +62,12 @@ const Header = () => {
               Get Involved
             </Link>
             <Link 
+              to="/donate"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Donations
+            </Link>
+            <Link 
               to="/contact"
               className="text-foreground hover:text-primary transition-colors"
             >
@@ -80,7 +86,7 @@ const Header = () => {
                 Volunteer
               </Button>
             </Link>
-            <Link to="/get-involved">
+            <Link to="/donate">
               <Button 
                 className="bg-gradient-warm text-white hover:opacity-90 shadow-glow"
               >
@@ -131,6 +137,13 @@ const Header = () => {
                 Get Involved
               </Link>
               <Link 
+                to="/donate"
+                className="block w-full text-left text-foreground hover:text-primary py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Donations
+              </Link>
+              <Link 
                 to="/contact"
                 className="block w-full text-left text-foreground hover:text-primary py-2"
                 onClick={() => setIsMenuOpen(false)}
@@ -148,7 +161,7 @@ const Header = () => {
                     Volunteer
                   </Button>
                 </Link>
-                <Link to="/get-involved" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/donate" onClick={() => setIsMenuOpen(false)}>
                   <Button 
                     className="w-full bg-gradient-warm text-white hover:opacity-90"
                   >
