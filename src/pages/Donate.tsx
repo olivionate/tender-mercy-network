@@ -668,7 +668,7 @@ const DonatePage = () => {
                                 <FormItem>
                                   <FormLabel>Phone Number</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="+254 700 000000" {...field} />
+                                    <Input placeholder="+254 725 252412" {...field} />
                                   </FormControl>
                                   <FormMessage />
                                 </FormItem>
@@ -782,7 +782,7 @@ const DonatePage = () => {
 
                     <div className="pt-4 border-t text-sm text-muted-foreground">
                       <p className="mb-2 font-semibold text-foreground">Questions?</p>
-                      <p>Contact us at donations@tendermercy.org or call +254 700 000000</p>
+                      <p>Contact us at donations@tendermercy.org or call +254 725 252412</p>
                     </div>
                   </CardContent>
                 </Card>
