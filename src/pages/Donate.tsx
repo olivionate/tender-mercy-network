@@ -18,6 +18,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -58,6 +59,7 @@ const donorInfoSchema = z.object({
 
 const DonatePage = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [donationType, setDonationType] = useState("one-time");
   const [amount, setAmount] = useState("50");
   const [customAmount, setCustomAmount] = useState("");
@@ -101,16 +103,26 @@ const DonatePage = () => {
       return;
     }
 
-    // Show success message
-    toast({
-      title: "Donation Successful! 🎉",
-      description: `Thank you for your ${donationType === "monthly" ? "monthly" : "one-time"} donation of $${donationAmount}. You will receive a confirmation email shortly.`,
-      duration: 6000,
+    // Generate transaction ID
+    const transactionId = `TMN-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+    
+    // Navigate to confirmation page with donation data
+    navigate("/donation-confirmation", {
+      state: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        amount: donationAmount.toFixed(2),
+        donationType: donationType,
+        paymentMethod: paymentMethod,
+        transactionId: transactionId,
+        date: new Date().toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+      },
     });
-
-    // Reset form
-    form.reset();
-    setCustomAmount("");
   };
 
   const selectedAmount = customAmount || amount;
