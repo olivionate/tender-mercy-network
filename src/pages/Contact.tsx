@@ -237,7 +237,7 @@ const ContactPage = () => {
                         <p className="text-red-700 mb-2">
                           For urgent matters outside office hours, please call our emergency line.
                         </p>
-                        <p className="font-semibold text-red-800">+254 700 000 000</p>
+                        <p className="font-semibold text-red-800">+254 725 252 412</p>
                       </div>
                     </div>
                   </CardContent>
